@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api_credit_card.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.infrastructure.config.settings')
 
 application = get_wsgi_application()

@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api_credit_card.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.infrastructure.config.settings')
 
 application = get_asgi_application()

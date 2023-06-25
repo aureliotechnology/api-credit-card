@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'api_credit_card.urls'
+ROOT_URLCONF = 'core.api.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'api_credit_card.wsgi.application'
+WSGI_APPLICATION = 'core.infrastructure.config.wsgi.application'
 
 
 # Database
