@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Local apps
+    'credit_card',
+
     # Third party
     'rest_framework',
     'rest_framework_simplejwt',
