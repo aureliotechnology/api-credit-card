@@ -6,13 +6,18 @@ from django.core.exceptions import ValidationError
 
 from creditcard import CreditCard as CardValidator
 
+
 class CreditCardModelTest(TestCase):
 
     def setUp(self):
         """
         Setup method to create a base credit card instance for use in the following tests.
         """
-        self.credit_card = CreditCard(exp_date=self.exp_date_str_to_date('02/2025'), 
+        next_year = datetime.now().year + 1  # Get next year
+        current_month = datetime.now().month  # Get current month
+        exp_date = f'{current_month}/{next_year}'  # Format as 'MM/YYYY'
+
+        self.credit_card = CreditCard(exp_date=self.exp_date_str_to_date(exp_date), 
                                     holder='John Doe', 
                                     number='4111111111111111')
 

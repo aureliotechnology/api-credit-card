@@ -20,17 +20,18 @@ class CreditCard(models.Model):
             raise ValidationError('Invalid card number.')
 
     def _validate_exp_date(self):
-        # Convert the exp_date from mm/yyyy to a datetime object
+        # Converte a exp_date de mm/yyyy para um objeto datetime
         if isinstance(self.exp_date, str):
             month, year = map(int, self.exp_date.split('/'))
-        elif isinstance(self.exp_date, date):  # Use date instead of datetime.date
+        elif isinstance(self.exp_date, date):  # Use date em vez de datetime.date
             month = self.exp_date.month
             year = self.exp_date.year
         last_day_of_month = monthrange(year, month)[1]
-        self.exp_date = datetime(year, month, last_day_of_month)
+        self.exp_date = date(year, month, last_day_of_month)  # Use date em vez de datetime
 
-        if self.exp_date <= datetime.now():
-            raise ValidationError('Card expiration date must be in the future.')
+        if self.exp_date <= date.today():  # Use date.today em vez de datetime.now
+            raise ValidationError('A data de expiração do cartão deve ser no futuro.')
+
 
     def _validate_cvv(self):
         if self.cvv:
