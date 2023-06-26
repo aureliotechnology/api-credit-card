@@ -7,6 +7,7 @@ from calendar import monthrange
 
 class CreditCard(models.Model):
     holder = models.CharField(max_length=255)
+    brand = models.CharField(max_length=255, blank=True, null=True)
     number = models.CharField(max_length=19)
     exp_date = models.DateField()
     cvv = models.IntegerField(blank=True, null=True)
@@ -18,6 +19,7 @@ class CreditCard(models.Model):
     def _validate_number(self):
         if not CardValidator(self.number).is_valid:
             raise ValidationError('Invalid card number.')
+        self.brand = CardValidator(self.number).get_brand()
 
     def _validate_exp_date(self):
         # Converte a exp_date de mm/yyyy para um objeto datetime

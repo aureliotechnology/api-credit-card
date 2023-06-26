@@ -6,11 +6,9 @@ import calendar
 
 class CreditCardSerializer(serializers.ModelSerializer):
 
-    exp_date = serializers.DateField(input_formats=['%Y-%m-%d',])
-
     class Meta:
         model = CreditCard
-        fields = ['id', 'holder', 'number', 'exp_date', 'cvv']
+        fields = ['id', 'holder', 'number', 'exp_date', 'cvv', 'brand']
 
     def to_internal_value(self, data):
         # Convert exp_date from MM/YYYY to YYYY-MM-DD
