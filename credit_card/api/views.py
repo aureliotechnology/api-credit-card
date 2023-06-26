@@ -1,11 +1,13 @@
 from rest_framework import viewsets
 from rest_framework.exceptions import MethodNotAllowed
+from rest_framework.permissions import IsAuthenticated
 from credit_card.models import CreditCard
 from .serializers import CreditCardSerializer
 
 class ReadOnlyCreditCardViewSet(viewsets.ModelViewSet):
     queryset = CreditCard.objects.all()
     serializer_class = CreditCardSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_actions(self):
         actions = super().get_actions()
@@ -27,3 +29,4 @@ class ReadOnlyCreditCardViewSet(viewsets.ModelViewSet):
 class CreditCardViewSet(viewsets.ModelViewSet):
     queryset = CreditCard.objects.all()
     serializer_class = CreditCardSerializer
+    permission_classes = [IsAuthenticated]

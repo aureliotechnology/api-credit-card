@@ -3,9 +3,17 @@ from datetime import datetime
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase
+from django.contrib.auth.models import User
+from rest_framework_simplejwt.tokens import RefreshToken 
+
 
 class CreditCardAPITests(APITestCase):
     def setUp(self):
+
+        self.user = User.objects.create_user(username='testuser', password='testpass')
+        refresh = RefreshToken.for_user(self.user)
+        self.access_token = str(refresh.access_token)
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
         # URL for creating a credit card
         self.create_credit_card_url = reverse('creditcard-list')
 
